@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Club Registration</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            background-color: #DDF3E9;
+        }
+
+        .p1 {
+            color: #ff8c00;
+            font-style: italic;
+            font-size: 25px;
+            font-family: verdana;
+            text-align: center;
+        }
+
+        .tabl {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p class="p1">Student Club registration</p>
+    <table class="tabl">
+        <tr>
+            <td>Name:</td>
+            <td>
+                <input type="text" name="myName" id="txtName">
+            </td>
+        </tr>
+        <tr>
+            <td>Gender:</td>
+            <td>
+                <input type="radio" name="myGender" value="Male">Male
+                <input type="radio" name="myGender" value="Female">Female
+            </td>
+        </tr>
+        <tr>
+            <td>Age:</td>
+            <td>
+                <select name="age" id="myAge">
+                    <option value="">Select</option>
+                    <option value="18">18 years old</option>
+                    <option value="19">19 years old</option>
+                    <option value="20">20 years old</option>
+                    <option value="21">21 years old</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Favourite Course:</td>
+            <td>
+                <input type="checkbox" name="chkCourse" value="Internet Programming">Internet Programming
+                <input type="checkbox" name="chkCourse" value="Economics">Economics
+                <input type="checkbox" name="chkCourse" value="Mathematics">Mathematics
+            </td>
+        </tr>
+        <tr>
+            <td>Visions in Life:</td>
+            <td>
+                <textarea name="vision" rows="4" cols="40" id="myVision"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="button" name="submit" value="Submit" onclick="DisplayOutput()">
+                <input type="reset" name="reset" value="Reset">
+            </td>
+        </tr>
+    </table>
+    <br>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
+    <p id="p5"></p>
+
+    <script>
+        function DisplayOutput() {
+            var strName = document.getElementById("txtName").value;
+            var strGender = document.querySelector('input[name="myGender"]:checked');
+            var strAge = document.getElementById("myAge").value;
+            var strCourse = document.querySelectorAll('input[name="chkCourse"]:checked');
+            var strVision = document.getElementById("myVision").value;
+
+            if (strName.trim() === "") {
+                alert("Please enter your name.");
+                return;
+            }
+
+            if (!strGender) {
+                alert("Please select your gender.");
+                return;
+            }
+
+            if (strAge === "") {
+                alert("Please select your age.");
+                return;
+            }
+
+            if (strCourse.length === 0) {
+                alert("Please select at least one course.");
+                return;
+            }
+
+            if (strVision.trim() === "") {
+                alert("Please enter your vision in life.");
+                return;
+            }
+
+            document.getElementById("p1").innerHTML = "Name: " + strName;
+            document.getElementById("p2").innerHTML = "Gender: " + strGender.value;
+            document.getElementById("p3").innerHTML = "Age: " + strAge;
+            var courses = [];
+            for (var i = 0; i < strCourse.length; i++) {
+                courses.push(strCourse[i].value);
+            }
+            document.getElementById("p4").innerHTML = "Favorite Course(s): " + courses.join(", ");
+            document.getElementById("p5").innerHTML = "Vision in Life: " + strVision;
+        }
+
+    </script>
+</body>
+
+</html>
